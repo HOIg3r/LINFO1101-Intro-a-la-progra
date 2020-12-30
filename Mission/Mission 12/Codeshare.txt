@@ -1,0 +1,411 @@
+### TP LINFO1101
+### TP final - Questions/Réponses
+### Tuteur : Benoît Michel
+
+
+### EXAMEN BLANC "bis" ###
+
+# Question 1
+
+> Solution 1 : utiliser un dictionnaire 
+
+l = ['a','b','a','b','a','b']
+dico = {'a' : 3, 'b' : 3}
+dico = {'b' : 3, 'a' : 3}
+
+def plus_frequent(l):
+    """
+    pre: `l` est une liste, len(l) > 0
+    post: retourne l'élément qui se trouve le plus grand nombre de fois
+        dans la liste `l` (nombre d'ocurrences égales au sens de ==).  Si
+        plusieurs éléments différents apparaissent un plus grand nombre égal
+        de fois, retourne le premier apparaissant dans la liste.
+    """
+    dico = {}
+    for elem in l:
+    	if elem in dico.keys():
+      	dico[elem] = dico[elem] + 1
+      else:
+      	dico[elem] = 1
+        
+      # dico[elem] = dico.get(elem, 1) + 1
+      
+    # plein de choses -> désordonnerait le dictionnaire
+      
+    max_value = 0
+    nb_occurences = 0
+    for key in dico.keys():
+    	if dico[key] > nb_occurences:
+      	max_value = key
+				nb_occurences = dico[key]
+        
+  return max_value
+  
+  
+> Solution 2 : utiliser une double boucle for
+
+def plus_frequent(l):
+    """
+    pre: `l` est une liste, len(l) > 0
+    post: retourne l'élément qui se trouve le plus grand nombre de fois
+        dans la liste `l` (nombre d'ocurrences égales au sens de ==).  Si
+        plusieurs éléments différents apparaissent un plus grand nombre égal
+        de fois, retourne le premier apparaissant dans la liste.
+    """
+    max_value = 0
+    nb_occurences = 0
+    for i in range(len(l)):
+    	count = 0
+      for j in range(i+1, len(l)):
+      	if l[i] == l[j]:
+        	count += 1
+      if nb_occurences < count:
+      	nb_occurences = count
+        max_value = l[i]
+    return max_value
+    
+    
+> solution 3 : la ligne la plus courte
+
+def plus_frequent(l):
+    """
+    pre: `l` est une liste, len(l) > 0
+    post: retourne l'élément qui se trouve le plus grand nombre de fois
+        dans la liste `l` (nombre d'ocurrences égales au sens de ==).  Si
+        plusieurs éléments différents apparaissent un plus grand nombre égal
+        de fois, retourne le premier apparaissant dans la liste.
+    """
+		return max([(l.count(l[i]), -i, l[i]) for i in range(len(l))])[2]
+        
+      	
+# Question 2
+
+> solution 1 : classique
+
+def rainfall(l):
+    """
+    pre: l est une liste de nombres, len(l) > 0, l contient un élément 9999.
+    post: retourne la moyenne des éléments dans la liste l jusqu'à l'élément 9999
+        non compris.  Si des éléments sont négatifs, ils sont traités comme valant 0.
+    """
+    données = 0
+		nbr_données = 0
+		for i in l:
+    	if i == 9999:
+      	break
+      données += max(i, 0)
+      nbr_données += 1
+		return (données/nbr_données)
+    
+> solution 2 : réutilisation du i pour compter le nombre d'éléments
+
+def rainfall(l):
+    """
+    pre: l est une liste de nombres, len(l) > 0, l contient un élément 9999.
+    post: retourne la moyenne des éléments dans la liste l jusqu'à l'élément 9999
+        non compris.  Si des éléments sont négatifs, ils sont traités comme valant 0.
+    """
+    données = 0
+		for i in range(len(l)):
+    	if l[i] == 9999:
+      	break
+      données += max(l[i], 0)
+		return (données/i)
+
+> solution 3 : avec un intervalle
+
+def rainfall(l):
+    """
+    pre: l est une liste de nombres, len(l) > 0, l contient un élément 9999.
+    post: retourne la moyenne des éléments dans la liste l jusqu'à l'élément 9999
+        non compris.  Si des éléments sont négatifs, ils sont traités comme valant 0.
+    """
+    données = 0
+		nbr_données = 0
+		for i in l:
+    	if i >= 0 and i < 9999:
+      	données += i
+      	nbr_données += 1
+      elif i<0:
+      	nbr_données += 1
+    	else:
+      	break
+		return (données/nbr_données)
+    
+    
+# Question 3
+
+> solution 1 : avec open
+
+def load_matrix(filename):
+    """
+    pre: `filename` est un nom de fichier
+    post: retourne une matrice rectangulaire M x N dont le contenu est donné
+        dans le fichier `filename`.
+
+    le format du fichier est :
+        première ligne : le nombre de lignes M
+        deuxième ligne : le nombre de colonnes N
+        lignes suivantes : une ligne par élément au format "I,J VAL"
+            où 0 <= I < M et 0 <= J < N
+            et VAL est le réel en ligne I et colonne J de la matrice
+
+    Les éléments non repris dans le fichier sont initialisés à 0.0.
+
+    En cas d'erreur (exception d'entrée/sortie, fichier non lisible,
+    mauvais format) retourne None.
+    """
+    try :
+    	file = open(filename,'r')
+      lines = file.readlines()
+      
+      # Création d'une matrice de bonne taille et initialisée à 0
+      matrix = []
+      for i in range(int(lines[0])):
+      	matrix_line = []
+      	for j in range(int(lines[1])):
+        	matrix_line.append(float(0))      # 0.0
+        matrix.append(matrix_line)
+      
+    	# Remplissage de la matrice
+      for i in range(2, len(lines)):
+      	current_line = lines[i].strip()
+        current_line = current_line.split()    # ["i,j", "VAL"]
+        indexes = current_line[0].split(",")     # ["i", "j"]
+        matrix[int(indexes[0])][int(indexes[1])] = float(current_line[1])
+        
+      file.close()
+      return matrix
+      
+    except:
+    	file.close()
+    	return None
+      
+      
+> solution 2 : avec with open
+      
+def load_matrix(filename):
+    """
+    pre: `filename` est un nom de fichier
+    post: retourne une matrice rectangulaire M x N dont le contenu est donné
+        dans le fichier `filename`.
+
+    le format du fichier est :
+        première ligne : le nombre de lignes M
+        deuxième ligne : le nombre de colonnes N
+        lignes suivantes : une ligne par élément au format "I,J VAL"
+            où 0 <= I < M et 0 <= J < N
+            et VAL est le réel en ligne I et colonne J de la matrice
+
+    Les éléments non repris dans le fichier sont initialisés à 0.0.
+
+    En cas d'erreur (exception d'entrée/sortie, fichier non lisible,
+    mauvais format) retourne None.
+    """
+    try :
+    	with open(filename,'r') as file :
+      	lines = file.readlines()
+      
+      	# Création d'une matrice de bonne taille et initialisée à 0
+      	matrix = []
+      	for i in range(int(lines[0])):
+      		matrix_line = []
+      		for j in range(int(lines[1])):
+        		matrix_line.append(float(0))      # 0.0
+        	matrix.append(matrix_line)
+      
+    		# Remplissage de la matrice
+      	for i in range(2, len(lines)):
+      		current_line = lines[i].strip()
+        	current_line = current_line.split()    # ["i,j", "VAL"]
+        	indexes = current_line[0].split(",")     # ["i", "j"]
+        	matrix[int(indexes[0])][int(indexes[1])] = float(current_line[1])
+
+      return matrix
+    except:
+    	return None
+      
+      
+> solution 3 : avec with open optimisé
+      
+def load_matrix(filename):
+    """
+    pre: `filename` est un nom de fichier
+    post: retourne une matrice rectangulaire M x N dont le contenu est donné
+        dans le fichier `filename`.
+
+    le format du fichier est :
+        première ligne : le nombre de lignes M
+        deuxième ligne : le nombre de colonnes N
+        lignes suivantes : une ligne par élément au format "I,J VAL"
+            où 0 <= I < M et 0 <= J < N
+            et VAL est le réel en ligne I et colonne J de la matrice
+
+    Les éléments non repris dans le fichier sont initialisés à 0.0.
+
+    En cas d'erreur (exception d'entrée/sortie, fichier non lisible,
+    mauvais format) retourne None.
+    """
+    try :
+    	with open(filename,'r') as file :
+      	lines = file.readlines()
+      
+      	# Création d'une matrice de bonne taille et initialisée à 0
+      	matrix = []
+      	for i in range(int(lines[0])):
+      		matrix_line = []
+      		for j in range(int(lines[1])):
+        		matrix_line.append(float(0))      # 0.0
+        	matrix.append(matrix_line)
+      
+    		# Remplissage de la matrice
+      	for i in range(2, len(lines)):
+        	current_line = current_line.strip().split()    # ["i,j", "VAL"]
+        	matrix[int(current_line[0][0])][int(current_line[0][2])] = float(current_line[1])
+
+      return matrix
+    except:
+    	return None
+      
+      
+# Question 4
+
+def update(self, name, pin):
+    """
+    pre: name != None, la liste contient au plus un élément dont le username
+         est `name`.
+    post: Si un client dont le username est name est déjà présent, met à jour
+          son code pin, sinon ajoute à la liste un nouveau client ayant `name`
+          comme username et `pin` comme code pin.
+    """
+  	# si la liste est vide
+    if self.last == None:
+    	new_client = Client(name, pin)
+    	self.last = ClientList.Node(new_client, None)
+  	# sinon
+    else:
+    	found = False
+    	current = self.last
+      while current is not None:
+      	if current.data.userName == name:
+        	node.data.setPin(pin)
+          found = True
+          break
+        current = current.link
+      if not found:
+      	new_client = Client(name, pin)
+      	self.last = ClientList.Node(new_client, self.last)
+
+
+
+
+
+
+#### >>> RAPPELS PAR POINTS DE MATIERE DU COURS <<< ####
+
+
+
+### BASE ###
+
+# 0. Bases de programmation
+
+- Vocabulaire (instruction, expression, valeur, variable, déclaration, initialisation, incrémentation...) 
+- Base du code (symboles, conditions, boucles...)
+- Méthodes : range(n) <==> range(0, n, 1), print(), help()
+
+# 1. Fonctions et sous-problèmes
+
+- Vocabulaire (définition, en-tête, documentation/spécification, corps...)
+- Différence print/return, import (3 façons) -> turtle
+- Décomposition en sous-problèmes
+
+
+
+### STRUCTURES DE DONNEES ###
+
+# 2.1. Strings 
+
+- Beaucoup de méthodes : len(), upper(), lower(), capitalize(), accès par index : [0], slices [5:9]
+- Concaténation : a = "hello" + " world!"
+- Cast : a = str(1), b = int("3"), c = float("3.0"), d = int(3.2)
+
+# 2.2. Listes
+
+- Beaucoup de méthodes : len(), accès par index : [0], slices [5:9], append(), sorted(), count(), remove()
+- Gestion des listes imbriquées -> matrices 
+- Accès par index (for i in range(len(l))) et accès par valeur (for elem in l)
+
+# 3.1. Tuples
+
+- Différence avec les listes : immutable !! a = (1,2)  a[0] = 2 INTERDIT AVEC LES TUPLES !
+- Gestion des tuples imbriqués dans des listes ou des dictionnaires : a = [(0,1), (3,4), (5,9), ...]
+OU PIRE une liste de tuples composés d'un string et d'une liste de strings : 
+cours = [('LINFO1101', ['Jean', 'Pierre']), ('LINFO1110', ['Jean']), ('LINFO1111', ['Jean']), ('LINFO1112', ['Jacques', 'Pierre']), ('LINFO1113', ['Pierre'])]
+- tests : assert()
+
+# 3.2. Algorithmes de recherche (strings, listes, tuples, recherche binaire...)
+
+- rechercher ou intersecter deux strings/listes/tuples
+- recherche binaire
+
+# 4.1. Fichiers
+
+- Beaucoup de méthodes : open ("r", "a", "w"), close(), readlines(), with open() as, input("...")
+
+# 4.2. Exceptions
+
+- Connaître quelques exceptions de base (tip : possible de les simuler à l'examen) : AssertionError, IndexError, FileNotFoundError, ZeroDivisionError
+- try ... except ...
+- raise Exception()
+
+# 5. Dictionnaires -> question
+
+- // avec les listes : ~les listes sont des dictionnaires dont les clefs sont les indexs.
+l = ['a', 'b', 'c']
+dico = {0 : 'a', 1 : 'b', 2 : 'c'}
+- particularité des dictionnaires = pas d'ordre !
+- Beaucoup de méthodes : accès par clef [], get(clef, default_value), items(), keys(), values()
+for key, value in dico.items()
+for key in dico <==> for key in dico.keys()
+- Savoir gérer les structures imbriquées : un dictionnaire où chaque valeur est une liste de tuples par exemple
+
+
+### OBJETS ###
+
+
+# 6. Classes et objets
+
+- self != cls
+- passage par valeur != passage par référence
+- Vocabulaire (constructeur, variables d'instance/attribut, variable de classe, méthode d'instance, décorateur, méthode implicite, référence, objet, instance...)
+- Des méthodes : __str__, __init__, __eq__
+
+# 7.1. Héritage
+
+- des dessins ! hyper important !!
+- super()
+- redéfinition VS écrasement
+- variables et méthodes privées -> les acceseurs et les modificateurs
+- méthodes à redéfinir ou pas...
+
+# 7.2. Polymorphisme
+
+- tests unitaires
+- if __name__ == "__main__"
+- intérêt du polymorphisme
+
+# 7.3. Listes chaînées -> question
+
+- Combinaison de tout ce qu'on a vu !
+- DESSINS !!
+- types de LinkedList
+- conprendre les interactions entre la classe Node et la classe LinkedList (où est défini quoi ? Quand appelle-t'on quoi ? ...)
+- attention les attributs peuvent changer de nom !
+- ajouter/supprimer une node -> cas limites
+
+
+
+
+
+
+

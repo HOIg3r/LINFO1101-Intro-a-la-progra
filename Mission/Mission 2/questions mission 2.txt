@@ -1,0 +1,72 @@
+Question 1
+Définissez les concepts suivants :
+	variable : symbole qui sont associée a une nombre, une valeur ...
+	valeur : donné associé a une variable qui est contenue par la mémoire 
+	data type : classe de valeur qui sont liés entre elle et sur lesquelle des opérations sont communes et liée
+	instruction : ordre a suivre par la machine pour lancer le code
+	expression : ensemble de valeur, conditions ... qui sont evalué pour produire une nouvelle valeur
+
+Question 2
+Dans l'extrait de programme ci-dessous, indiquez après chaque ligne les valeurs contenues dans les variables a, b, c.
+
+	a = 0 #a = 0
+	b = 1 #a = 0  b = 1
+	c = 2 #a = 0  b = 1  c = 2
+	
+	a = b       # ligne 1	a = 1 b = 1  c = 2
+	a = a*2     # ligne 2   a = 2 b = 1  c = 2
+	b = 17      # ligne 3	a = 2 b = 17 c = 2
+	c = a+b     # ligne 4	a = 2 b = 17 c = 19
+	a = b-c     # ligne 5	a =-2 b = 17 c = 19
+	c = a+b+c+a # ligne 6	a =-2 b = 17 c = 32
+
+Question 3
+Expliquez, avec vos propres mots, ce que représente la notation
+
+i = i + 1
+et ce qu'elle a comme effet. Pourrait-on la remplacer par une autre notation ?
+
+	incrémentation
+	on prend la valeur assinié a i et on la remplace par cette meme valeur mais a la quelle on a ajouté 1
+
+Question 4
+Quelle est la relation entre une instruction et une expression ? Donnez des exemples.
+
+	certaine instruction on besion d'expression pour fonctionner
+	ex = while x >= 19:
+		print ('j'aime le chocolat")
+
+Question 5
+Expliquez ce que produisent les instructions suivantes :
+
+print( 10 + 10 )	20
+print( "10" + "10" )	"1010"
+print( int("10") + int("10") )	20
+
+Question 6
+Que se passe-t-il si on exécute ce programme ? Comment peut-on le corriger ?
+
+n = input("n = ? ")
+print("n^2 =", n ** 2)
+	
+	le string "3" est stocké dans n et donc le programme  fait une erreur car "3"**2 = ERROR
+	il faut ecrire int(input("n = ?") pour crée un nombre et pas un string
+
+Question 7
+Expliquez ce que produisent les instructions suivantes :
+
+print(10 / 3) = division du nombre 10 = 3,33333...
+print(10 // 3)= division reel du nombre 10 = 3
+print(10 % 3) = reste de la division reel du nombre 10 = 1
+
+Question 8
+Que fait le programme suivant ?
+
+for n in [0, 1, 2, 3, 4]:
+    print(10 ** n)
+Comment pourrait-on écrire autrement la boucle for ?
+	
+	se programme ecrit dans la console 5 fois  10 au carré des 5 premiers entiers avec 0
+
+	for n in range(0, 5):
+	    print(10**n)

@@ -1,0 +1,116 @@
+Questions ouvertes
+0. Notions théoriques
+Répondez aux questions suivantes:
+
+Qu'est-ce qu'une liste chaînée?
+   une structure de données groupant une collection d'éléments en une séquence de noeuds
+   chainées qui peut etre parcouru séquentiellement
+Qu'est-ce qu'une structure de données? Donnez un exemple.
+   maniere de grouper et organiser des données afin de faciliter certaines opérations 
+   sur ces données
+   traversée tous les éléments d'une collection de donnée
+Expliquez la différence entre un noeud (Node) et sa cargaison (cargo).
+   noeud permet de lier les données entre elle
+   cargo sont les données
+Expliquez la différence entre un noeud (Node) et une liste chainée (LinkedList).
+    noeud est contenue dans la liste chainée
+    liste chainée est toutes la liste avec les noeuds
+   
+Dans le livre et le cours magistral, la notion d'une liste chaînée a d'abord été expliqué sans la classe LinkedList, simplement en chaînant des noeuds l'un à l'autre. Pourquoi avons nous alors besoin d'une classe LinkedList?
+Expliquez et donnez un exemple du caractère ambiguë d'un noeud.
+    si on passe le node en argument, on fait une copie par référence
+ 
+ 
+ 
+1. Utilisation d'une LinkedList
+Question 1a : Manipuler une liste vide
+
+Cette question concerne l'utilisation de la classe LinkedList dont le code se trouve dans l'annexe suivante du syllabus : Appendix - Source code of linked lists
+
+Utilisez la classe LinkedList pour créer une liste chaînée vide l.
+
+l = LinkedList() 
+ 
+Donnez une instruction Python pour imprimer le contenu de cette liste l.
+
+l.print() 
+ 
+Quel résultat sera affiché si on essaie d'imprimer la liste l avec l'instruction print(l)? Expliquez.
+
+<__main__.LinkedList object at 0x04B231D0> car pas de fonction __str__(self) 
+ 
+Donnez une instruction Python pour imprimer la taille de cette liste l .
+
+     print(l.size())
+ 
+Quel résultat sera affiché si on essaie d'imprimer la taille avec l'instruction print(l.__length)? Expliquez.
+
+ AttrivuteError car variable privée 
+ 
+Question 1b : Remplir la liste
+
+Pour ajouter des éléments à une liste vide, quelqu'un a écrit les instructions suivantes:
+
+l = LinkedList()
+l.add(3)
+l.add(2)
+l.add(1)
+l.print()
+Mais quelqu'un d'autre à écrit:
+
+l = LinkedList()
+l.add(Node(3))
+l.add(Node(2))
+l.add(Node(1))
+l.print()
+Dans les deux cas, exécuter l'instruction l.print() affichera [ 1 2 3 ].
+
+Lequel des deux fragments de code ci-dessus vous semble correct? Pourquoi l'autre imprime quand-même le même résulat?
+
+Indice : qu'est-ce qui se passe si on exécute l'instruction print(Node(Node(Node(1))))? Pouvez-vous expliquer?
+
+la métgode __str__ de Node est récursive en argument, on fair une copie de référence
+ 
+ 
+ 
+ 
+2. Imprimer une liste chaînée
+Dans le code donné dans l'annexe Appendix - Source code of linked lists la méthode print() de la classe LinkedList imprime les éléments d'une liste chaînée, séparés par une espace. Par exemple:
+
+>>> l = LinkedList()
+>>> l.add(3)
+>>> l.add(2)
+>>> l.add(1)
+
+>>> l.print()
+[ 1 2 3 ]
+Or, normalement la convention est de séparer les éléments d'une liste par des virgules. Ajoutez une nouvelle méthode print_avec_virgule() dans la classe LinkedList qui imprime la liste comme suite:
+
+>>> l.print_avec_virgule()
+[ 1, 2, 3 ]
+Attention: il n'y a pas de virgule après le dernier élément ou si on imprime une liste vide.
+
+    def print_avec_virgule(self):
+        head = self
+        tail = self.__next
+        if tail is not None:
+	    print(head, end=',')
+	    tail.print_avec_virgule()
+
+>>> l = LinkedList()
+>>> l.print_avec_virgule()
+[ ]
+3. Imprimer une liste chaînée (généralisation)
+Généralisez la méthode print_avec_virgule de l'exercice précédente par une méthode print_avec_separateur qui peut prendre n'importe quelle séparateur. Par exemple:
+
+>>> l = LinkedList()
+>>> l.add(3)
+>>> l.add(2)
+>>> l.add(1)
+
+>>> l.print_avec_separateur(", ")
+[ 1, 2, 3 ]
+>>> l.print_avec_separateur(" ")
+[ 1 2 3 ]
+>>> l.print_avec_separateur(" - ")
+[ 1 - 2 - 3 ]

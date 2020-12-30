@@ -1,0 +1,138 @@
+Questions ouvertes
+Question 1 : Vocabulaire
+On vous donne le code suivant qui teste certaines fonctionnalités du module random.
+
+import unittest
+import random
+
+class RandomTest(unittest.TestCase):
+    """Clases de test utilisé pour tester les fonctions du module 'random'"""
+
+    def setUp(self):
+        """Initialisation des tests."""
+        self.l = list(range(10))
+
+    def test_choice(self):
+        """Test de fonctionnement de la fonction random.choice"""
+        e = random.choice(self.l)
+        # Vérifie que 'e' est dans 'l'
+        self.assertIn(e,self.l)
+
+    def test_shuffle(self):
+        """Test le fonctionnement de la fonction random.shuffle"""
+        random.shuffle(self.l)
+        self.l.sort()
+        self.assertEqual(self.l, list(range(10)))
+
+    def test_sample(self):
+        """Test le fonctionnement de la fonction random.sample"""
+        extrait = random.sample(self.l, 5)
+        for element in extrait:
+            self.assertIn(element,self.l)
+        self.assertRaises(ValueError, random.sample, self.l, 20)
+
+# To automatically launch this test when executing this file
+if __name__ == '__main__':
+    unittest.main()
+Considérant cette classe, on vous demande de :
+
+Expliquez cet extrait de code
+if __name__ == '__main__':
+    unittest.main()
+
+dans ce fichier, lancer unittest.main()
+ 
+ 
+Expliquez le rôle de import unittest et pourquoi c'est indispensable.
+ 
+ importer les fonction de unnitest
+ Faire des teste pour chaque fonction de la classe
+ 
+ 
+Expliquez cette ligne class RandomTest(unittest.TestCase): et pourquoi c'est indispensable.
+ 
+ 
+ 
+ 
+Sur base du contenu du cours ou en lisant https://docs.python.org/3/library/unittest.html pour plus d'information, expliquez ce que font ces méthodes :
+def setUp(self)
+ 
+ 
+ 
+ 
+self.assertEqual()
+ 
+ 
+ 
+ 
+self.assertIn()
+ 
+ 
+ 
+ 
+self.assertRaises()
+ 
+ 
+ 
+ 
+Question 2 : Tests unitaires
+Implémentez une classe de tests unitaires MyClassTest qui hérite de unittest.TestCase qui teste la fonction carre_parfait du module totest. (En mathématiques, un carré parfait est le carré d'un entier.)
+
+Soit la fonction carre_parfait du module totest ayant pour spécifications :
+
+def carre_parfait (x) :
+    '''
+    retourne true si l'entier en argument est un carré parfait, false sinon
+    '''
+# CODE NON FOURNI
+Complétez la classe de test ci-dessous :
+
+import totest
+import unittest
+
+class MyClassTest(unittest.TestCase) :
+
+    # todo
+
+if __name__ == '__main__':
+    unittest.main()
+Ecrivez au moins trois tests unitaires pour vérifier l'implémentation de cette fonction
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Que donnent-vos tests unitaires pour les implémentations suivantes :
+def carre_parfait (x) :
+   return True
+def carre_parfait (x) :
+    return False
+def carre_parfait (x) :
+    cur = 0
+    while not cur*cur == x :
+        cur += 1
+    return True
+import math
+def carre_parfait (x) :
+    root = math.sqrt(x)
+    return root.is_integer()
+import math
+def carre_parfait (x) :
+    if x < 0 : return False
+    root = math.sqrt(x)
+    return root.is_integer()

@@ -1,0 +1,155 @@
+Question 1
+Dans cet exercice, nous étudions les listes de nombres entiers ordonnées de façon strictement croissante. Un exemple d'une telle liste est [-1,0,3,5]; la liste [-1,0,0,2] ne l'est pas.
+
+Étant donnée une liste de nombres entiers, comme [-2,0,3,4] ou [3,-2,0], écrivez une fonction def is_sorted(l) avec la spécification suivante:
+def is_sorted ( l ):
+    """ Retourne si la liste l est ordonnée de façon strictement croissante.
+
+    Args:
+        l: une liste de nombres entiers, positif ou négatif
+    Retourne:
+        Un booléen qui indique si la liste l est ordonnée de façon strictement croissante.
+    """
+    for i in range(1,len(l)):
+        if l[i] <= l[i-1]:
+            return False
+    return True
+
+ 
+Écrivez 6 tests en utilisant assert pour évaluer si la fonction is_sorted(l) a été mise en oeuvre correctement.
+ 
+def test_is_sorted():
+    assert is_sorted([1,2,3,4]) == True, "Test 1"
+    assert is_sorted([-1,0,3,4]) == True, "Test 2"
+    assert is_sorted([1,4,2]) == False, "Test 3"
+    assert is_sorted([44,99,111]) == True, "Test 4"
+    assert is_sorted([-4,-5,4]) == False, "Test 5"
+    assert is_sorted([4,3,2,1]) == False, "Test 6" 
+ 
+Étant données deux listes ordonnées de façon strictement croissante, on veut calculer une nouvelle liste ordonnée des nombres entiers qui sont communs entre les deux listes. Par exemple, étant données les listes [-2,-1,0,1,2,3,4] et [0,1,2,5,6], on veut calculer la liste [0,1,2], qui contient les nombres entiers [0,1,2] qui sont communs entre les deux listes. Une première implémentation de cette idée est donnée ci-dessous.
+def intersect ( l1, l2 ):
+    """ Retourne une liste ordonnée des nombres entiers communs entre l1 et l2.
+
+    Args:
+        l1: une liste ordonnée de nombres entiers, positif ou négatif
+        l2: une liste ordonnée de nombres entiers, positif ou négatif
+    Retourne:
+        Une liste ordonnée de nombres entiers communs entre l1 et l2.
+    """
+    l = []
+    for e1 in range(len(l1)):
+      for e2 in range(len(l2)):
+         if e2 == e1:
+            l.append ( e1 )
+    return l
+Malheureusement, le code ne fonctionne pas encore correctement. Écrivez un test qui montre que le code n'est pas correct.
+
+>>> intersect([1,2,3,4],[1,2,3,4])
+[0, 1, 2, 3]
+ 
+Écrivez un test sur lequel le code (incorrect) marche correctement; dans ce test la fonction doit être appelée avec deux listes de longueur 3.
+ >>> intersect([0,1,2],[0,1,2,3])
+[0, 1, 2]
+ 
+Corrigez l'erreur en modifiant deux lignes de code de la fonction.
+ 
+ def intersect ( l1, l2 ):
+    """ Retourne une liste ordonnée des nombres entiers communs entre l1 et l2.
+
+    Args:
+        l1: une liste ordonnée de nombres entiers, positif ou négatif
+        l2: une liste ordonnée de nombres entiers, positif ou négatif
+    Retourne:
+        Une liste ordonnée de nombres entiers communs entre l1 et l2.
+    """
+    l = []
+    for e1 in range(len(l1)):
+      for e2 in range(len(l2)):
+         if l2[e2] == l1[e1]:
+            l.append ( l2[e2] )
+    return l
+ 
+Déterminez combien de fois la ligne de code if e2 == e1: est executée pour le cas de test suivant:
+assert intersect ( list(range(100)), list(range(100)) ) == list(range(100))
+
+100 000 foix
+ 
+ 
+On va essayer de résoudre le problème plus efficacement. Une idée est de parcourir les deux listes en même temps; pour chaque élément de la première liste, on regarde si on peut trouver l'élément dans la partie de la deuxième liste qu'on n'a pas encore parcouru. Cette idée a été mise en oeuvre dans la fonction suivante:
+def intersect ( l1, l2 ):
+    """ Retourne une liste ordonnée des nombres entiers communs entre l1 et l2.
+
+    Args:
+        l1: une liste ordonnée de nombres entiers, positif ou négatif
+        l2: une liste ordonnée de nombres entiers, positif ou négatif
+    Retourne:
+        Une liste ordonnée de nombres entiers communs entre l1 et l2.
+    """
+    l = []
+    p1 = 0
+    p2 = 0
+    while p1 < len(l1):
+        while l1[p1] > l2[p2]:
+            p2 += 1
+        if l1[p1] == l2[p2]:
+            l.append ( p2 )
+        p1 += 1
+    return l
+Malheureusement, le code ne fonctionne pas encore correctement.
+
+Écrivez quelques testes qui permettent de découvrir que le code n'est pas correct.
+def test_is_sorted():
+    intersect([1, 2, 3, 4], [1, 2, 3, 4]) ==[1,2,3,4]
+    intersect([-1, 0, 3, 4], [33, 34, 35, 36]) == []
+    intersect([1, 4, 5],[3, 4]) == [4]
+    intersect([44, 99, 111], [44, 45, 46]) == [44]
+ 
+ 
+Corrigez le programme pour résoudre le problème, sans ajouter des lignes au programme.
+ 
+def intersect ( l1, l2 ):
+    """ Retourne une liste ordonnée des nombres entiers communs entre l1 et l2.
+
+    Args:
+        l1: une liste ordonnée de nombres entiers, positif ou négatif
+        l2: une liste ordonnée de nombres entiers, positif ou négatif
+    Retourne:
+        Une liste ordonnée de nombres entiers communs entre l1 et l2.
+    """
+    l = []
+    p1 = 0
+    p2 = 0
+    while p1 < len(l1):
+        while l1[p1] > l2[p2] and p2 < len(l2):
+            p2 += 1
+        if l1[p1] == l2[p2]:
+            l.append ( p2 )
+        p1 += 1
+    return l 
+ 
+ 
+
+Étudiez le code suivant:
+coordonnees = [(0,1),(2,3),(0,1),(4,5),(1,2),(0,1),(1,1),(0,2),(1,1)]
+
+def f ( v ):
+  return v*v
+
+def increment ( l ):
+  for i in range(len(l)):
+    l[i] = (f(l[i][0]), l[i][1])
+
+increment ( coordonnees )
+assert coordonnees == [(0,1),(4,3),(0,1),(16,5),(1,2),(0,1),(1,1),(0,2),(1,1)]
+Malheureusement le code ne passe pas le test. Corrigez une ligne de la fonction increment(l) de telle sorte que le code passe le test.
+ 
+
+Question 4
+On peut appliquer l'algorithme de question 9 pour trouver les étudiants de plusieurs cours. Supposez que chaque fois que vous calculez middle, tu imprimes la valeur calculée pour middle. Dans ce cas, le nombre de valeurs imprimées pour middle correspond à la nombre de fois que la boucle while est exécutée. Combien de fois est-ce que la boucle est exécutée pour l'exemple suivant ?
+
+La liste est:
+
+[('LINFO1101', ['Jean', 'Pierre']), ('LINFO1110', ['Jean']),\
+ ('LINFO1111', ['Jean']), ('LINFO1112', ['Jacques', 'Pierre']), \
+ ('LINFO1113', ['Pierre'])]
+Les cours donnés sont: LINFO1110(3x), LINFO1112(2x), LINFO1111(1x), LINFO1114(4x). 

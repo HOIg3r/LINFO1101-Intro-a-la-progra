@@ -1,0 +1,232 @@
+Question 1 : Héritage
+L'héritage est un principe de base de la programmation orientée objet. Considérons les classes A, B, C et D ci-dessous :
+
+class A :
+
+  def m1(self) :
+      print("A 1")
+
+  def m2(self) :
+      print("A 2")
+
+  def m3(self) :
+      self.m1()   # appel à la méthode m1 sur la même instance
+
+  def nom(self) :
+      return "A"
+
+class B(A) :
+
+  def m2(self):
+      print("B 2")
+
+class C(A):
+
+    def m1(self) :
+        print("C 1")
+
+    def nom(self):
+        return "C"
+
+class D(C) :
+
+    def m2(self) :
+        print("D 2")
+Considérant ces quatre classes, on vous demande de :
+
+Expliquez ce que représente le mot self dans la définition de ces différentes méthodes.
+ 
+ fait toujour appelle a l'objet courant dans la classe
+ 
+ 
+Dessiner un diagramme reprenant ces quatre classes.
+
+
+ 
+ 
+ 
+ 
+Expliquer ce qui sera affiché lors de l'exécution des instructions Python ci-dessous :
+a = A()
+print(a.nom())
+a.m1()
+a.m2()
+a.m3()
+b = B()
+print(b.nom())
+b.m1()
+b.m2()
+b.m3()
+c = C()
+print(c.nom())
+c.m1()
+c.m2()
+c.m3()
+d = D()
+print(d.nom())
+d.m1()
+d.m2()
+d.m3()
+ 
+ 
+ >>>
+A
+A 1
+A 2
+A 1
+A
+A 1
+B 2
+A 1
+C
+C 1
+A 2
+C 1
+C
+C 1
+D 2
+C 1
+ 
+ 
+ 
+Question 2 : super()
+Expliquez le rôle de la fonction spécial super() dans le langage Python. Donnez un exemple.
+ 
+ Permet  de rappeler l'instance de la classe mere
+ 
+Considérons les classes E et F ci-dessous :
+class E :
+
+    def m(self) :
+        print("E 1")
+
+    def n(self) :
+        print("E 2")
+
+    def p(self) :
+        self.n()   # appel à la méthode n sur la même instance
+
+class F(E) :
+
+   def q(self) :
+       print("F 1")
+
+   def n(self) :
+       super().n() # appeler la méthode définie sur la classe mère
+       print("F 2")
+
+   def r(self) :
+        self.m() # appel à la méthode m sur la même instance
+Expliquer ce qui sera affiché lors de l'exécution des instructions Python suivantes :
+
+f = F()
+f.q()
+f.m()
+f.r()
+f.n()
+f.p()
+ 
+ 
+ F 1
+E 1
+E 1
+E 2
+F 2
+E 2
+F 2
+ 
+ 
+ 
+ 
+Question 3 : Rectangle
+Considérons la classe Figure reprise ci-dessous :
+
+class Figure:
+
+    def __init__(self,x,y,visible=False) :
+        """
+        @pre x, y sont des entiers représentant des positions sur l'écran
+        @post Une figure a été créée avec centre de gravité aux coordonnées x,y.
+              Cette figure n'est initialement pas visible.
+        """
+        self.x = x
+        self.y = y
+        self.__visible = visible
+
+    def estVisible(self) :
+        """
+        @pre -
+        @post a retourné la visibilité de cette figure
+        """
+        return self.__visible
+
+    def surface(self) :
+        """
+        @pre -
+        @post la surface (un float) de la figure a été calculé et retournée
+        """
+        pass            # code non fourni
+Cette classe Figure est la classe mère d'un ensemble de classes permettant de représenter des figures géométriques. Chaque figure géométrique est placée à une position (x,y) (centre de gravité) sur l'écran et la classe contient des variables d'instance et des méthodes permettant de manipuler cette figure géométrique (notamment des méthodes permettant d'afficher la figure à l'écran, mais ces méthodes ne sont pas reprises dans les extraits présentés dans cet exercice). Parmi ces figures géométriques, on trouve notamment la classe Rectangle qui hérite de la classe Figure et dont un fragment est repris ci-dessous :
+
+class Rectangle(Figure):
+
+    def __init__(self,lo,la,x,y) :
+        """
+        @pre lo (longeur) et la (largeur) sont des entiers positifs
+             x, y sont des entiers représentant des positions sur l'écran
+        @post un rectangle dont le centre de gravite est en x,y
+              et ayant comme longueur lo et comme largeur la a été créé
+        """
+        super().__init__(x,y)
+        self.longeur = lo
+        self.largeur = la
+
+    def __str__(self) :
+        return str((self.longeur,self.largeur,self.x,self.y,self.estVisible()))
+
+>>> r = Rectangle(10,20,0,0)
+>>> print(r)
+(10, 20, 0, 0, False)
+Maintenant expliquez :
+
+Quelles sont les variables d'instance qu'une instance de la classe Rectangle peut utiliser ?
+Que se passe-t il lorsqu'une instance r de la classe Rectangle est créé?
+Que fait l'appel à super() dans la méthode __init__ de la classe Rectangle ?
+Que se passe-t il si on met cet appel à super() comme dernière instruction dans la méthode __init__ de la classe Rectangle ?
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Dans la classe Rectangle, faut-il redéfinir les méthodes suivantes (si oui, écrivez le code de la nouvelle méthode - si non, expliquez pourquoi ):
+
+surface()
+ 
+def surface():
+    return self.longueur * self.largeur
+ 
+ 
+ 
+ 
+ 
+ 
+estVisible()
+ 
+ 
+ 
+ 

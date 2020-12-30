@@ -1,0 +1,46 @@
+Question 1
+Considérez le code suivant:
+
+file = open ( "file.txt", "r" )
+for line in file:
+    print  ( line.strip ().split (",") )
+file.close ()
+Le contenu du fichier file.txt est le suivant:
+X	 	,	X	 	,	\n	 	,	X	\n	X	X	,	,	X
+Expliquez le résultat de code.
+["X ,","X ", ""]
+["","X"]
+["XX","","X"]	split retire les "," et strip divise tout les termes
+
+
+
+Question 4
+Considérez le code suivant.
+
+command = input ( "Enter your command: " )
+parameters = command.split ()
+if parameters[0] == "divide":
+    print ( "The value of your division is: " + str ( float(parameters[1])/float(parameters[2])))
+else: if parameters[0] == "showfile":
+    file = open ( parameters[1] )
+    print ( file.read () )
+    file.close ()
+else:
+    print ( "Command not recognized")
+Identifiez quelles erreurs pourraient survenir lors de l'exécution de ce code. Il n'est pas nécessaire d'identifier les noms exacts des erreurs en Python; il suffit de décrire les erreurs en français.
+
+divide 3 ==> indexError
+divide 3 0 ==> zerodivisionerror
+divide a b ==> value error
+showfile file ==> fileNotFoundError
+
+Question 5
+Dans la mission, vous devrez lire un fichier qui contient des mots avec leur fréquence d'occurrence. Par exemple:
+
+this,5146
+that,10790
+these,1575
+the,69975
+those,864
+Identifiez les différentes erreurs que l'on pourrait rencontrer en lisant ce fichier. Il n'est pas nécessaire d'identifier les noms exacts des erreurs; il suffit de les décrire en mots.
+

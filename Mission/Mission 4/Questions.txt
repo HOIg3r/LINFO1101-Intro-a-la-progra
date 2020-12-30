@@ -1,0 +1,75 @@
+Question 2
+Etant donnée une chaîne de caractères stockée dans un variable l, par exemple, l = "louvain-la-neuve" ou l = "braine-le-compte", comment feriez-vous pour :
+
+Afficher la longueur de la chaîne de caractères l
+	print(len(l))
+Afficher la chaîne l en majuscules
+	print(l.upper())
+Afficher le premier caractère de l
+	print(l[0]())
+Afficher le premier caractère de l en majuscule
+	print(l[0].upper()) 
+Afficher toute la chaîne sauf le premier caractère
+	print(l[1:])
+Afficher la chaîne avec le premier caractère en majuscule (sur les exemples, "Louvain-la-neuve" et "Braine-le-compte")
+	print(l[0].upper()+l[1:]) 
+
+
+Question 4
+Nous voulons écrire une fonction positions(s,p) qui pour une chaîne de caractères s et un caractère p retourne la liste des positions
+où le caractère p apparaît dans s. Par exemple, pour positions("gtagaac","a") le résultat doit être [2,4,5].
+
+Décrivez en mots la structure d'un programme Python qui peut résoudre ce problème.
+
+Écrivez du code Python pour ce problème.
+
+def positions(s,p):
+    l = []
+    for i in range(len(s)):
+        if s[i] == p:
+            l.append(i)
+    print(l)
+    return l
+ 
+ 
+ 
+Écrivez une spécification de la fonction suivante:
+def q(c1,c2):
+"""
+pre : c1,c2 doivent etre une chaine de caractère 
+post : vérifie si les 2 chaines de cararctère sont les meme, meme si il sont ecrit en majuscule ou minuscule
+"""
+  return c1.upper() == c2.upper()
+ 
+ 
+ 
+On veut modifier la fonction positions(c,p) de telle façon que la fonction ignore si un caractère est en majuscule 
+ou en minuscule. Par exemple, dans ce cas positions("gtagaAc","A") donne aussi [2,4,5] comme résultat, puisque le cas n'est pas important.
+Modifiez la fonction positions(c,p), en utilisant la fonction q de la question précédente.
+
+def positions(s,p):
+    l = []
+    s = s.upper()
+    p = p.upper
+    for i in range(len(s)):
+        if s[i] == p:
+            l.append(i)
+    print(l)
+    return l
+ 
+Question 6
+Étudiez la fonction ci-dessous et écrivez une spécification pour la fonction, en utilisant des conditions pré and post!
+
+def mysterieux(n):
+"""
+pre : 
+post : 
+"""
+  l = []
+  for i in range(n):
+    l2 = []
+    for j in range(n):
+      l2.append ( n )
+    l.append ( l2 )
+  return l 
+ 

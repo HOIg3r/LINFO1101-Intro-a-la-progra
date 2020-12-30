@@ -1,0 +1,188 @@
+Questions ouvertes
+Définitions
+Considérez le code suivant d'une classe Student représentant un étudiant
+
+class Student 
+
+    def __init__(self,n) 
+        
+        Initialise un nouvel objet de type Student avec un nom n donné.
+        @pre  -
+        @post Un objet de type Student a été créé avec comme 'name' n,
+               et un score None pour chacun des trois tests 'test1', 'test2' et 'test3'
+        
+        # nom de l'étudiant
+        self.name = n
+        # score reçu par l'étudiant sur trois tests
+        # (initialement None car l'étudiant n'a pas encore passé les tests)
+        self.test1 = None
+        self.test2 = None
+        self.test3 = None
+
+    def average_score(self) 
+        
+        Calcul du score moyen que l'étudiant a obtenu sur les 3 tests.
+        @pre les variables d'instance test1, test2 et test3
+              contiennent des valeurs de type int
+        @post retourne la valeur moyenne de ces trois valeurs
+        
+        return (self.test1 + self.test2 + self.test3)  3
+Les instructions suivant donnent un exemple de comment cette classe peut être utilisé
+
+student = Student(Kim)
+student.test1 = 14.0
+student.test2 = 10.5
+student.test3 = 12.0
+print(Bonjour,  + student.name + . Vos scores sont)
+print(student.test1)
+print(student.test2)
+print(student.test3)
+print(Votre score moyenne est  + str(student.average_score()))
+student2 = student
+print(Votre score moyenne est  + str(student2.average_score()))
+student = None
+student2 = None
+Sur base de ces extraits, donnez des exemples des notions suivantes, en veillant à être précis et rigoureux dans votre formulation
+
+Classe, objet (ou instance)
+ 
+class Student
+ 
+ 
+Constructeur et méthode d'initialisation
+ 
+ def __init__(self,n) :
+ def average_score(self) :
+ 
+ 
+ 
+Attribut (ou variable d'instance)
+ 
+ self.name = n
+ self.test1 = None
+ self.test2 = None
+ self.test3 = None
+ 
+ 
+ 
+Méthode d'instance
+ 
+ student.test1 = 14.0
+student.test2 = 10.5
+student.test3 = 12.0
+ 
+ 
+Référence à un objet et la valeur None
+
+student2 = student 
+student = None
+student2 = None
+ 
+ 
+Référence à self
+ 
+return (self.test1 + self.test2 + self.test3) / 3
+ 
+ 
+
+
+
+Classes et objets
+Dans la question précédente, expliquez les notations student.name, student.average_score() et self.name et leur interprétation par Python.
+
+student.name -> permet d'accerder a la valeur de la variable d'instance 'name'  de l'objet con tenu dans la variable 'student'
+student.avarage_score() -> appelle la methode d'instance 'average_score()' sur l'objet auquel la variable student réfère
+self.name 
+
+ 
+ 
+Méthode de conversion de string
+Dans la première question, pour imprimer le détail d'un objet student de la classe Student on devait exécuter la série d'instructions suivante
+
+print(Bonjour,  + student.name + . Vos scores sont)
+print(student.test1)
+print(student.test2)
+print(student.test3)
+print(Votre score moyenne est  + str(student.average_score()))
+Au lieu d'exécuter cette série d'instructions à l'extérieur de la classe, ce serait beaucoup plus facile de pouvoir obtenir le même résultat en écrivant seulement
+
+print(student)
+A cette fin, ajoutez une méthode magique __str__ à la classe Student qui retourne un string du style
+
+Bonjour, Kim. Vos scores sont
+ 14.0
+ 10.5
+ 12.0
+ Votre score moyenne est 12.166666666666666
+Tester votre code comme suite
+
+ student = Student(Kim)
+ student.test1 = 14.0
+ student.test2 = 10.5
+ student.test3 = 12.0
+ print(student)
+Bonjour, Kim. Vos scores sont
+14.0
+10.5
+12.0
+Votre score moyenne est 12.666666666
+Une classe simple
+Dans le cadre d'un cours de programmation, un étudiant a développé une classe Pair permettant de manipuler un objet contenant une paire d'entiers. Le code de cette classe Python est repris ci-dessous 
+
+class Pair
+    
+    Une paire d'entiers
+    
+
+    def __init__(self, x=None, y=None)
+        
+        @pre -
+        @post crée une paire (a,b) composée de x et y,
+              ou une paire non-initialisée si aucune valeur
+              de x et de y n'est donné lors de l'appel au constructeur
+        
+        self.a = x   # le premier élément de la paire
+        self.b = y   # le second élément de la paire
+
+    def __str__(self)
+        return str(self.a) + ,  + str(self.b)
+Considérons le code Python ci-dessous illustrant une utilisation de la classe Pair
+
+p0 = Pair()      ##1##
+p1 = Pair(0,0)   ##2##
+p2 = Pair(1,1)   ##3##
+p0.b = 3         ##4##
+p1.a = 10        ##5##
+p2.a = p1.a      ##6##
+p2 = p1          ##7##
+Expliquez les opérations effectuées par chacune de ces lignes. Pensez à utiliser une représentation graphique des différents objets telle que celle utilisée dans le syllabus ou les transparents en indiquant les valeurs des différentes variables d'instance.
+
+#1 p0 = <__main__.Pair object at 0x03B2BCB0>
+#2
+#3
+#4
+#5
+#6
+#7
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Après avoir exécuté les opérations précédentes, qu'impriment les instructions suivantes
+
+print(p0)        ##7##
+print(p1)        ##8##
+print(p2)        ##9##
+ 
+ 
+ 

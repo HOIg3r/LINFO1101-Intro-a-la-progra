@@ -1,0 +1,144 @@
+# TP LINFO1101
+# Tuteur : Benoît Michel
+# lundi 09/11/2020
+# Classes et objets
+
+# QCM ?
+
+
+# Question 1
+student = Student("Kim")
+student.test1 = 14.0
+student.test2 = 10.5
+student.test3 = 12.0
+student.average_score()
+
+student2 = Student("Charles")
+student2.test1 = 8.0
+student2.test2 = 10.5
+student2.test3 = 12.0
+student2.average_score()
+
+
+# Question 2
+student.name -> permet d'accéder à la valeur de la variable d'instance 'name' de l'objet contenu dans la variable 'student'.
+student2 = student
+student2.name = "Charles"
+student.name -> "Charles"
+
+student.average_score() -> appelle la méthode d'instance 'average_score()' sur l'objet auquel la variable student réfère.
+
+self.name -> permet d'accéder à la valeur de la variable d'instance 'name' de l'objet référé par self
+
+
+# Question 3
+def __str__(self):
+	s = "Bonjour, " + self.name + ". Vos scores sont:" + "\n" \
+  		+ str(self.test1) + "\n" + str(self.test2) + "\n" + str(self.test3) + "\n" \
+      + "Votre score moyen est " + str(self.average_score())
+  return s
+  
+  
+# Question 4
+print(p0) -> None,3
+print(p1) -> 10,0
+print(p2) -> 10,0
+
+
+
+# Question 5
+class Pair:
+
+    def __init__(self, x, y):
+        self.a = x
+        self.b = y
+
+    def __str__(self):
+        return str(self.a) + ", " + str(self.b)
+
+    def opposite(self):
+    """
+    @pre        -
+    @post   retourne une nouvelle instance de Pair dont les deux
+            éléments sont les opposés de ceux de cette paire-ci.
+            L'instance appelante reste inchangée.
+    """
+        return Pair(-self.a, -self.b)
+        
+        
+# Question 6
+Ligne 2 affichée
+
+class Pair:
+
+    def __init__(self, x, y):
+        self.a = x
+        self.b = y
+
+    def __eq__ (self, p):
+        """
+        @pre    -
+        @post   Retourne true si la paire p est égale à l'objet.
+                Retourne false sinon
+        """
+        if p==None:
+        	return False
+        if self.a == p.a and slef.b == p.b:
+        	return True
+        else:
+        	return False
+          
+        return (p!=none and self.a==p.a and self.b==p.b)
+        
+        
+p1 = Pair(9, 42)
+p2 = Pair(9, 42);
+if (p1 == p2) : print("Egaux en 1")   ##1##
+	
+
+p1 == p2   <===> p1.__eq__(p2)
+
+
+
+# Question 7
+
+class OrderedPair:
+    '''
+    Représente une paire de deux entiers (représenté en interne par une instance p de la classe Pair).
+    Cette paire est considérée comme ordonnée si l'attribut a de p est plus petit ou égal à son attribut b
+    '''
+
+    def __init__(self):
+        self.p = Pair(0, 0)
+        self.ordered = True
+
+    def set_a(self, n_a):
+        """
+        @pre -
+        @post donne au premier élément de la paire la nouvelle valeur n_a
+        """
+        self.p.a = n_a
+        if n_a <= self.p.b:
+        	self.ordered = True
+        else:
+        	self.ordered = False
+        
+        # self.ordered = n_a <= self.p.b
+
+    def set_b(self, n_b):
+        """
+        @pre -
+        @post donne au second élément de la paire la nouvelle valeur n_b
+        """
+        self.p.b = n_b
+        if n_b <= self.p.b:
+        	self.ordered = True
+        else:
+        	self.ordered = False
+          
+        # self.ordered = n_b <= self.p.b
+          
+          
+t = OrderedPair()
+t.set_a(5)
+t.set_b(7)

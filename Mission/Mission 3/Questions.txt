@@ -1,0 +1,96 @@
+Question 1
+Définissez les concepts suivants et donnez un exemple :
+
+définition d'une fonction : 	Ensemble d'instruction qui réalise une certaine tache
+				avec un nom spécial
+				qui est réutilisable
+				
+en-tête d'une fonction : 	premiere ligne de code de la definition de fonction (def max(x,y):)
+documentation et spécification d'une fonction:
+corps d'une fonction : 		ensemble du code de la fonction définie
+
+Question 2
+Que faut-il changer pour faire une fonction calculeMax qui retourne le plus grand nombre au lieu de l'afficher ?
+
+	Changer les print par des return
+
+
+Question 3
+Un étudiant montre à son tuteur le programme suivant :
+
+hauteur = int(input("Hauteur de la croix: "))
+print()
+croix('X', hauteur)
+Lors de son exécution, il affiche les caractères suivants à l'écran :
+
+Hauteur de la croix: 9
+
+    X
+    X
+    X
+    X
+XXXXXXXXX
+    X
+    X
+    X
+    X
+Réécrivez l'en-tête, la spécification et le corps de la fonction croix utilisée par cet étudiant. (Pour rappel, print(x, end="") imprime x sans aller à la ligne ensuite.)
+
+
+	def croix(caract, hauteur):
+	    for i in range(hauteur):
+	        for j in range(hauteur):
+	            if i != hauteur//2:
+	                if j == hauteur//2:
+	                    print(caract, end="")
+	                else:
+	                    print(" ", end="")
+	            else:
+	                print (caract, end="")
+	        print()
+	    print()
+
+Question 6
+Quelle est la différence entre les trois instructions import suivantes ? Après ces instructions, comment réfère-t-on à la constante math.pi ?
+
+import math		math.pi
+
+import math as m	m.pi
+
+from math import *	pi
+
+
+Question 7
+Dans le programme suivant :
+
+import turtle
+t = turtle.Turtle()
+t.color("blue")
+print(t.heading())
+Quelle est la nature (module, objet, fonction, méthode, …) des différents identifiants :
+
+turtle = le module
+Turtle = le constructeur de l'objet
+t = l'objet
+color = la couleur de la tortue
+print = imprimer dans la console
+heading = methode d'un objet de la classe turtle
+
+Quelle est la signification de turtle.Turtle ? t.color ?
+
+turtle.Turtle = créer a partir du module  turtle la tortue Turtle
+t.color = commande pour controler la couleur
+
+Question 8
+Ecrivez un programme qui crée une tortue et trace en bleu un escalier de 3 marches de 20 unités descendant vers la droite.
+
+	import turtle
+	wn = turtle.Screen()
+	t = turtle.Turtle()
+	t.color("blue")
+
+	for i in range(1,4):
+	    t.forward(20)
+	    t.right(90)
+	    t.forward(20)
+	    t.left(90)

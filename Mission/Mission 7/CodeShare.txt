@@ -1,0 +1,135 @@
+# TP LINFO1101 jeudi 05/11/2020
+# Tuteur : Benoît Michel
+# Séance de feed-back
+
+# main.py
+def readfile(filename):
+	...
+  
+def get_words(line):
+	...
+  
+  
+# test.py
+import main
+
+def test_readfile():
+	if main.readfile("filename.txt")!=['...']:
+		return False
+	elif main.readfile("file.txt")!=['...']:
+		return False
+	else:
+		return True
+
+
+
+# test2.py
+from main import *
+
+def test_readfile():
+	if readfile("filename.txt")!=['...']:
+		return False
+	elif readfile("file.txt")!=['...']:
+		return False
+	else:
+		return True
+    
+    
+    
+# create_index(filename)
+
+{"while": {0: 1}, "the": {0: 2, 1: 1}, "congress": {0: 1}, \
+ "of": {0: 1, 1: 1}, "republic": {0: 1}, ... , "jedi": {2: 1}, ...}
+ 
+ 
+l = ["A", "B", "C"]    <==>  ldico = {0:"A", 1:"B", 2:"C"}
+for i,j in l.enumerate():
+	print(i,j)
+  
+>>> 0,A
+		1,B
+    2,C
+    
+    
+dico = {}
+dico["A"] = dico.get("A", "") + "B"
+>>> dico = {"A" : "B"}
+
+dico = {"A" : "C"}
+dico["A"] = dico.get("A", "") + "B"
+>>> dico = {"A" : "CB"}
+ 
+ 
+ 
+# Lire et Comprendre
+end = False
+while end == False:    <==> while !end:
+	a = input("quels sont les mots à chercher? (les écrire en minuscules et espacés )")
+	b = a.split()
+  if "exit" in b:
+  	e = input("Voulez-vous quitter ? (y/n)")
+    if e == "y" or e == "yes":
+  		end = True
+ 
+ 
+ 
+ 
+# Question de Bilan Final
+
+dict = {word : occ, word2 : occ, ...}
+
+def counts(words):
+	"""
+  Compte le nombre de fois que chaque mot apparaît dans la liste 'words'
+  :param words: une liste de chaînes de caractères
+  :return freqs: un dictionnaire avec comme clef un mot et comme valeur son nombre d'occurence dans la liste 'words'
+  """
+	freqs = dict()
+  for word in words:
+  	freqs[word] = freqs.get(word, 0) + 1
+  return freqs
+  
+def convert(dico):
+	tuples = list()
+  for word, count in dico.items():
+  	tuples.append((count, word))
+  return sorted(tuples, reverse=True)
+  
+def topk_words(words, k):
+	dico = counts(words)
+  tuples = convert(dico)
+  
+  result = tuples[0:k]
+  
+  k2 = k
+  while k2 < len(tuples) and tuples[k2][0] == tuples[k][0]:
+  	result.append(tuples[k2])
+    k2 += 1
+    
+  return result
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

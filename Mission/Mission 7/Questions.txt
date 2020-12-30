@@ -1,0 +1,122 @@
+
+Question 1
+Considérez le code suivant
+
+codes = {Bruxelles  [1000,1020,1030], Louvain-la-Neuve  [1348], Wavre [1300,1301]}
+Les morceaux de code ci-dessous sont executés chacun après ce code. Décrivez ce qui se passe pour chacun des cas.
+
+On exécute 
+print(codes[Bruxelles])
+
+>>> [1000,1020,1030]
+ 
+ 
+On exécute 
+print(codes[Mons])
+
+>>> keyError : 'Mons'
+ 
+ 
+On exécute 
+print(codes[1000])
+
+>>>KeyError : '1000'
+ 
+ 
+On exécute 
+print(codes.get(Mons,[]))
+
+>>> [] 
+ 
+On exécute
+codes[Liege] = [4000]
+    print(codes)
+
+>>> {'Bruxelles': [1000, 1020, 1030], 'Louvain-la-Neuve': [1348], 'Wavre': [1300, 1301], 'Liege': [4000]}
+ 
+ 
+On exécute
+codes[Bruxelles].append(1040)
+    print(codes)
+ 
+>>> {'Bruxelles': [1000, 1020, 1030, 1040], 'Louvain-la-Neuve': [1348], 'Wavre': [1300, 1301]}
+ 
+On exécute
+codes.get(Bruxelles,[]).append(1050)
+    print(codes)
+
+>>> {'Bruxelles': [1000, 1020, 1030, 1040, 1050], 'Louvain-la-Neuve': [1348], 'Wavre': [1300, 1301]}
+ 
+ 
+On exécute
+codes.get(Arlon,[]).append(8362)
+    print(codes)
+ 
+>>> {'Bruxelles': [1000, 1020, 1030], 'Louvain-la-Neuve': [1348], 'Wavre': [1300, 1301]}
+
+ 
+On exécute
+if Bruxelles in codes
+    print(Found!)
+else:
+    print(Not found!)
+ 
+>>> Found!
+
+On exécute
+if 1000 in codes
+      print(Found!)
+else
+  print(Not found!)
+
+>>> Not Found!
+ 
+On exécute
+for x in codes
+      print(x)
+
+Bruxelles
+Louvain-la-Neuve
+Wavre
+ 
+ 
+On exécute
+for x in codes
+      print(codes[x])
+
+[1000, 1020, 1030]
+[1348]
+[1300, 1301]
+ 
+ 
+On exécute
+for x in codes.items()
+      print(x)
+
+('Bruxelles', [1000, 1020, 1030])
+('Louvain-la-Neuve', [1348])
+('Wavre', [1300, 1301])
+ 
+On exécute
+for x, y in codes.items()
+      y = y + [2000]
+print(codes)
+
+{'Bruxelles': [1000, 1020, 1030], 'Louvain-la-Neuve': [1348], 'Wavre': [1300, 1301]}
+ 
+ 
+On exécute
+for x, y in codes.items()
+      y.append(2000)
+    print(codes)
+
+{'Bruxelles': [1000, 1020, 1030, 2000], 'Louvain-la-Neuve': [1348, 2000], 'Wavre': [1300, 1301, 2000]}
+
+ 
+ 
+On exécute
+for x, y in codes.items()
+      x = x + "*"
+    print(codes)
+ 
+{'Bruxelles': [1000, 1020, 1030], 'Louvain-la-Neuve': [1348], 'Wavre': [1300, 1301]}

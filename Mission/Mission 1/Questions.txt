@@ -1,0 +1,45 @@
+Question 1
+	a, b et c sont des variables contenant des nombres entiers quelconques. Comment feriez-vous pour déterminer la médiane de ces trois nombres ?
+	Pour rappel, la médiane d’un ensemble de nombres est la valeur m telle qu’il y a dans l’ensemble autant de valeurs qui sont supérieures ou égales à m 
+	que de valeurs inférieures ou égales à m.
+
+	if (a>b and a<c) or (a<b and a>c):
+	  median = a
+	if (b>a and b<c) or (b<a and b>c):
+    	  median = b
+	if (c>a and c<b) or (c<a and c>b):
+    	  median = c
+
+
+Question 2
+	Sachant que print(x) permet d’afficher à l’écran la valeur stockée dans la variable x,
+	comment feriez-vous pour afficher à l’écran la table de multiplication par 123 ?
+
+x = 123
+n = nombre de fois que l'on veut le répété l'opération
+
+while n <= x
+	print(x*b)
+	n = n+1
+
+Question 3
+	Que se passe-t-il lors de l'exécution de la boucle suivante :
+
+	n = 1
+	i = 0
+	while n > 0:
+	    i=i+n
+	print(i)
+
+	cela va etre une  boucle infinie, elle ne va jamais s'arreter car n ne sera jamais plus petit que 0 car il n'est pas modifié
+
+Question 4
+	Sachant que les expressions a // b et a % b calculent respectivement la division et
+	le reste de la division de l’entier stocké dans la variable a par l’entier stocké dans la variable b, 
+	pouvez-vous écrire un boucle qui affiche à l’écran en utilisant la commande print() les diviseurs entiers 
+	du nombre entier positif stocké dans la variable n.
+i = 1
+while i <= n:
+    if n%i == 0:
+        print(i)
+    i += 1

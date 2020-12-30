@@ -1,0 +1,156 @@
+# TP lINFO1101
+# Phase de démarrage Mission 11
+
+a = [1,2,3]
+
+# Question 0
+
+1)
+- une structure de données groupant une collection d'éléments en une séquence de noeuds chainées qui peut etre parcouru séquentiellement
+
+2)
+- Structure de donnée: manière de grouper ou organiser des données pour faciliter opération
+
+3)
+- Noeud = permet de lier chaque donnée à la suivante, 
+- Cargaison = donnée contenue pour la donnée
+
+4)
+- Noeud = permet de lier chaque donnée à la suivante,
+- LinkedList = ensemble de toutes les nodes qui définit des opérations communes
+
+
+5) 
+- On peut représenter les LinkedList vides.
+- On peut écrire des opérations communes à toutes les nodes
+
+6)
+Attention que si on passe une node (c'est un objet) en argument, on fait une copie par référence.
+
+
+# Question 1 a)
+
+l = LinkedList()
+l.print()
+print(l) -> <__main__.LinkedList object at 0x102d83f98>
+print(l.size())
+print(l.__length) -> AttributeError: 'LinkedList' object has no attribute '__length'
+
+# Question 1 b)
+
+print(Node(Node(Node(1)))) -> 1
+>>> La méthode __str__ de Node est récursive et appelle à chaque fois __str__ sur son contenu.
+
+-> cf. dessin
+
+# Question 2 print_avec_virgule
+
+a = "1 2 3".split() -> [1, 2, 3] => problème : la méthode print directement sans stocker dans une variable.
+
+class LinkedList():
+
+	def print_avec_virgule(self):
+  	print("[", end=" ")
+    if self.__head is not None:
+        self.__head.print_avec_virgule()
+    print("]")
+    
+class Node():
+	
+  def print_avec_virgule(self):
+  	head = self
+    tail = self.__next    # go to my next node
+    if tail is not None : # as long as the end of the list has not been reached
+    		print(head, end=',')
+        tail.print_avec_virgule() # recursively print remainder of the list
+    else:
+    	print(head, end=" ")
+ 
+ 
+# Question 3
+
+class LinkedList():
+
+	def print_avec_separateur(self, separateur):
+  	print("[", end=" ")
+    if self.__head is not None:
+        self.__head.print_avec_separateur(separateur)
+    print("]")
+    
+class Node():
+	
+  def print_avec_separateur(self, separateur):
+  	head = self
+    tail = self.__next    # go to my next node
+    if tail is not None : # as long as the end of the list has not been reached
+    		print(head, end=separateur)
+        tail.print_avec_separateur() # recursively print remainder of the list
+    else:
+    	print(head, end=" ")
+      
+      
+# Question 4
+LIFO = Last-In First-Out
+
+ def __init__(self, lst=[]):
+        """
+        Initialises a new linked list object.
+        @pre:  -
+        @post: A new empty linked list object has been initialised.
+               It has 0 length, contains no nodes and the head points to None.
+        """
+        self.__length = 0
+        self.__head = None
+        
+        ## solution
+        l = lst.copy()  -> copy pour ne pas modifier l'argument passé par référence !!
+        l.reverse()
+        for elem in l:
+        	self.add(elem)
+          
+        ## solution alternative
+        for i in range(len(lst)-1, -1, -1):
+        	self.add(lst[i])
+      
+      
+# Question 5
+
+def remove(self):
+	if self.__head is not None:
+  	self.__head = self.__head.next()
+    self.__length -= 1
+    
+    
+# Question 6
+
+def insert(self, cargo):
+	if self.size() == 0 or cargo < self.first().value():
+  	self.add(cargo)
+  else:
+  	# on n'oublie pas d'incrémenter la longueur de la LinkedList
+  	self.__length += 1
+    # ensuite on cherche le bon endroit pour insérer le noeud
+    current = self.first()
+    while current.next() is not None:
+    	if cargo < current.next().value():
+      	# insérer entre current et current.next
+      	n = self.Node(cargo, current.next())
+        current.set_next(n)
+      current = current.next()
+    # si on arrive ici, on est au dernier élément
+    current.set_next(self.Node(cargo, None))
+  	
+# Question 8
+
+- Avantage : la classe Node est abritée dans la classe LinkedList. On pourrait aller plus loin et écrire class __Node
+- Désavantage : la classe Node devient difficilement testable et la classe LinkedList est plus longue et difficile à tester
+
+
+# Question 9
+
+-> cf. dessin
+
+# Question 10
+
+-> tests unitaires par vous-même
+-> Je reste disponible pour des questions ;)

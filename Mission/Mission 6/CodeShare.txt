@@ -1,0 +1,163 @@
+# TP LINFO1101 Lundi 8h30
+# Tuteur : Benoît Michel
+# Mission 6 : Phase de démarrage
+
+# Question 1 
+
+file = open ( "file.txt", "r" )
+for line in file:
+    print  ( line.strip ().split (",") )
+file.close ()
+X,X,XXX 
+
+>>> ["X ","X ",""]
+		[" ","X"]
+		["XX","","X"]
+
+
+# Question 2.1
+
+def line_count(filename):
+    file = open ( filename, "r" )
+    cnt = 0
+    for line in file:
+        cnt += 1
+    file.close ()
+    return cnt
+    
+# Question 2.2
+
+def char_count(filename):
+    file = open ( filename, "r" )
+    cnt = 0
+    for line in file:
+        cnt += len(line)
+    file.close ()
+    return cnt
+    
+# Question 2.3
+
+def space(filename,n):
+    file = open ( filename, "w" )
+    file.write (" " * n)
+    file.close ()
+
+#ALTERNATIVE
+def space(filename,n):
+    file = open ( filename, "w" )
+    s = ""
+    for i in range(n):
+        s += " "
+    file.write ( s )
+    file.close ()
+
+# Question 2.4
+
+def capitalize(filename_in,filename_out):
+    file_in = open ( filename_in, "r" )
+    file_out = open ( filename_out, "w")
+    for line in file_in:
+        file_out.write ( line.upper () )
+    file_in.close ()
+    file_out.close ()
+
+
+# Question 3.1
+
+def write_coordinates(filename, l):
+    file = open(filename,"w") 
+    for index, line in enumerate(l):
+        if index != (len(l)-1):
+            file.write(str(line[0])+','+str(line[1])+'\n') 
+        else:
+            file.write(str(line[0])+','+str(line[1])) 
+    file.close()
+    
+#ALTERNATIVE
+def write_coordinates(filename, l):
+    file = open(filename,"w") 
+    for x,y in l[:end-1]:
+        file.write(str(x) + "," + str(y) + "\n") 
+    file.write(l[end][0]) + "," + str(l[end][1])) 
+    file.close()
+
+# Question 3.2
+
+def read_coordinates(filename):
+    l = []
+    file = open (filename,"r")
+    for line in file:
+        x, y = line.split (",")
+        tuple = (float(x), float(y))
+        l.append(tuple)
+    return l
+
+
+# Question 5
+
+command = input ( "Enter your command: " )       "divide a b"
+parameters = command.split ()                    ["divide", "a", "b"]
+if parameters[0] == "divide":
+    print ( "The value of your division is: " + str ( float(parameters[1])/float(parameters[2])))
+elif parameters[0] == "showfile":
+    file = open ( parameters[1] )
+    print ( file.read () )
+    file.close ()
+else:
+    print ( "Command not recognized")
+    
+# Erreurs possibles
+"divide 3" -> parameters[2] -> IndexError
+"divide 3 0" -> ZeroDivisionError
+"divide a b" -> ValueError
+"showfile file" si file n'existe pas -> FileNotFoundError
+
+
+# Question 4
+
+command = input ( "Enter your command: " )       "divide a b"
+parameters = command.split ()                    ["divide", "a", "b"]
+try:
+		if parameters[0] == "divide":
+    		print ( "The value of your division is: " + str ( float(parameters[1])/float(parameters[2])))
+		elif parameters[0] == "showfile":
+    		with open ( parameters[1] ) as file:
+            print ( file.read () )
+		else:
+    		raise Exception ( "Command not recognized" )
+except ValueError: # paramètre de type incorrect
+    print ( "An incorrect parameter was given" )
+except FileNotFoundError:
+    print ( "The file was not found" )
+except IndexError:
+    print ( "Incorrect number of parameters specified")
+except ZeroDivisionError:
+    print ( "Division by zero" )
+except Exception as message:
+    print ( message )
+except:
+		print("There was an error")
+    
+    
+# Question 5
+# Preparation mission
+
+Types d'exception possibles : 
+	ValueError -> this, five
+  FileNotFoundError -> le fichier n'existe pas
+  IndexError -> this
+  Exception -> commande non reconnue
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+    
