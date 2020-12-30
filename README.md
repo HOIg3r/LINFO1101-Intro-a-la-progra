@@ -2,6 +2,8 @@
 
 ceci c'est le fichier avec toutes mes missions fait durant l'année 2020-2021 durant le Q1 (RIP le COVID)
 
+De plus il y a les réponses au questions et en plus le corrigé de mon ancien tuteur
+
 la majorité on fait 100% sur INGInious mais les derniers ne les font pas mais fonctionne
 certains ne fonctionne pas du tous car ... ben j'avais la flemme
 mais ça n'empeche pas d'avoir le point bonus pour l'exam de janvier :kappa:
