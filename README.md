@@ -5,13 +5,9 @@ Je viens aussi de rajouter tous les exercices d'INGInious que j'ai fait, certain
 
 De plus il y a les réponses aux questions et en plus elles sont "corrigées" gràce à mon ancien tuteur, si ça c'est pas cool ?!
 
-La majorité des phase de réalisation font 100% sur INGInious mais les derniers ne les font pas mais fonctionne quand meme (vient pas dire que j'ai fait du mauvais travail, je te vois petit Bac1)
-
-Oui certaines phase de réalisation ne fonctionnent pas du tous ou sont pas totalement finie car  ... ben j'avais la flemme (et la gueule de bois au passage)
-mais ça n'empeche pas d'avoir le point bonus pour l'exam de janvier :kappalul:
+Comme j'ai dit, la majorité des phase de réalisation font 100% sur INGInious mais les derniers ne les font pas mais fonctionne quand meme (vient pas dire que j'ai fait du mauvais travail, je te vois petit Bac1), j'avoue que j'ai pas eu masse de temps a la fin et j'avais un peu la flemme :kappa:
 
 Pour rappel, je ne met pas ça a disposition juste pour copier coller car c'est juste bete, si j'ai mit ça a votre disposition c'est pour vous aider a vous dépbloquer et sauver certains etudiant d'une misère pas possible.
-
 
 Si vous venez a vous faire convoquez devant le jury pour plagiat, c'est votre problème et pas le miens. Le plagiat est sévèrement punis a l'UCL.
 Donc je le dit ici : Je décline toute responsabilité si vous avez un problème avec l'UCL
