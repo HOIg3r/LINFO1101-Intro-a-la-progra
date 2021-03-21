@@ -1,4 +1,4 @@
-# Intro-a-la-progra-LLN-bac-1
+# LINFO1101-Intro-a-la-progra
 
 Ceci est le fichier avec toutes mes phase de réalisation fait durant l'année 2020-2021 durant le Q1 (RIP COVID et la vie etudiante)
 Je viens aussi de rajouter tous les exercices d'INGInious que j'ai fait, certains ne fonctionne pas (déso ¯\_(ツ)_/¯ ) mais ils sont presque tous fait et fonctionnel
