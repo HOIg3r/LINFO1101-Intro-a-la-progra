@@ -12,8 +12,4 @@ Pour rappel, je ne met pas ça a disposition juste pour copier coller car c'est 
 Si vous venez a vous faire convoquez devant le jury pour plagiat, c'est votre problème et pas le miens. Le plagiat est sévèrement punis a l'UCL.
 Donc je le dit ici : Je décline toute responsabilité si vous avez un problème avec l'UCL
 
-Sur ce,
-la Bise <3
 
-Holger
-AKA: Chaton 1
